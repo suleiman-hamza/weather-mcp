@@ -1,0 +1,28 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore build/output directories
+dist/
+build/
+
+# Ignore environment variables file
+.env
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
+# Ignore log files
+*.log
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore dependency directories
+bower_components/
+jspm_packages/
+
+# Ignore TypeScript output
+*.js
+*.map
