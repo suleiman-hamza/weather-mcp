@@ -17,3 +17,46 @@ if the response is not succesful, an error is thrown with the HTTP status code.
 
 response.json(): This parses the response body as json. The parsed json is cast to the generic type T, This ensures that the returned data matches the expected type.
 
+
+This code is part of a weather application that uses the Model Context Protocol (MCP) to provide weather alerts and forecasts. Here's a breakdown of what it does:
+
+Imports and Constants:
+
+It imports necessary modules and sets up constants for the National Weather Service (NWS) API base URL and a user agent string.
+Server Setup:
+
+It creates an instance of McpServer which will handle the tools (functions) for getting weather alerts and forecasts.
+Helper Functions:
+
+makeNWSRequest<T>: A generic function to make HTTP requests to the NWS API and return the response data.
+formatAlert: A function to format weather alert data into a readable string.
+Interfaces:
+
+Defines TypeScript interfaces for the structure of the data returned by the NWS API (e.g., AlertFeature, ForecastPeriod, AlertResponse, PointResponse, ForecastResponse).
+Tools:
+
+get-alerts: A tool to get weather alerts for a specific state. It constructs the API URL, makes a request, and formats the alert data.
+get-forecast: A tool to get the weather forecast for a specific location (latitude and longitude). It first gets the grid point data, then the forecast data, and formats the forecast periods.
+Detailed Explanation of the Tools
+get-alerts Tool
+Input: A two-letter state code (e.g., CA, NY).
+Process:
+Constructs the API URL for alerts using the state code.
+Makes a request to the NWS API to get alerts data.
+Checks if data is retrieved successfully and if there are any alerts.
+Formats the alerts using the formatAlert function.
+Output: A formatted string of active alerts for the state or a message indicating no alerts or a failure to retrieve data.
+get-forecast Tool
+Input: Latitude and longitude of the location.
+Process:
+Constructs the API URL to get grid point data for the location.
+Makes a request to the NWS API to get grid point data.
+Extracts the forecast URL from the grid point data.
+Makes a request to the forecast URL to get forecast data.
+Checks if data is retrieved successfully and if there are any forecast periods.
+Formats the forecast periods into a readable string.
+Output: A formatted string of the weather forecast for the location or a message indicating no forecast data or a failure to retrieve data.
+Example Usage
+To get weather alerts for California, you would call the get-alerts tool with the state code "CA".
+To get the weather forecast for a location with latitude 34.0522 and longitude -118.2437, you would call the get-forecast tool with these coordinates.
+This setup allows the weather application to provide users with up-to-date weather alerts and forecasts by interacting with the NWS API through the MCP server.
