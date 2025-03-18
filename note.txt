@@ -1,0 +1,19 @@
+<T>: This is a generic type parameter. it allows the function to work with any type T that is specified when the function is called. This generic type T represents the expected shape of the data returned by the API.
+
+(URL: string): The function takes a single string parameter, url, whichisa string representing the API endpoint to which the request is made.
+
+Promise<T | null>: The functions returns a Promise that resolves to either T (the expected data type) ornull if an error occurs during the request, the function catches the error and returns null.
+
+Headers: This is an object containing HTTP headers for the request.
+-User-Agent: this is required by the nws api to identifythe application making the request.
+-Accept: 'application/geo+json': Specifies that the client expecta a response in the apllication/geo+json format.
+
+fetch(url, { header }): This makes an HTTP GET request to the specified url with the provided headers.
+
+await: The await keyword is used to wait for the fetch Promise to resolve before proceeding.
+
+response.ok: This checks if the HTTP response status indicates success.
+if the response is not succesful, an error is thrown with the HTTP status code.
+
+response.json(): This parses the response body as json. The parsed json is cast to the generic type T, This ensures that the returned data matches the expected type.
+
